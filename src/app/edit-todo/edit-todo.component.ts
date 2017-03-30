@@ -18,10 +18,7 @@ export class EditTodoComponent implements OnInit {
       this.index = +params['index']; // + converts string to number in JavaScript
       this.todo = this.todoService.getTodoItem(this.index);
       this.newTodo = Object.assign({}, this.todo);
-      console.log('Success')
-    },
-    error => console.error(error),
-    () => console.log('Complete'));
+    });
   }
   editTodo(): void {
     if (this.newTodo.name.length > 0) {
