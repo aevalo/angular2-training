@@ -1,12 +1,8 @@
 <h1>GitHub search</h1>
 <form id="searchForm" name="searchForm">
     <label for="searchTerm">Search:&nbsp;</label>
-    <input id="searchTerm"
-           name="searchTerm"
-           type="text"
-           placeholder="Search..."
-           [(ngModel)]="searchTerm">
-    <button type="button" (click)="doSearch()">Search</button>
+    <input id="searchTerm" name="searchTerm" type="text" placeholder="Search..." #term>
+    <button type="button" (click)="doSearch(term.value)">Search</button>
 </form>
 <hr>
 <div class="results">

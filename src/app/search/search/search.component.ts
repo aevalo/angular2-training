@@ -7,11 +7,10 @@ import {SearchService} from '../search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  @Input() searchTerm: string;
   results: any[];
   constructor(private searchService: SearchService) {}
   ngOnInit(): void {}
-  doSearch(): void {
-    this.searchService.search(this.searchTerm).subscribe(items => this.results = items);
+  doSearch(term: string): void {
+    this.searchService.search(term).subscribe(items => this.results = items);
   }
 }
