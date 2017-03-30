@@ -1,4 +1,4 @@
-<form id="editTodoForm" name="editTodoForm">
+<form novalidate id="editTodoForm" name="editTodoForm" #editForm="ngForm" (submit)="editForm.valid && editTodo()">
   <h3 [ngClass]="{'todo-done': todo.done}">Todo #{{index + 1}} - {{todo.name}}</h3>
   <div>
     <label for="name">Name:</label>
@@ -9,6 +9,7 @@
            [(ngModel)]="newTodo.name"
            required>
   </div>
+  <div *ngIf="nameField.invalid && nameField.touched">Name is required!</div>
   <div>
     <label for="assignee">Assignee:</label>
     <input id="assignee"
@@ -19,6 +20,7 @@
            required
            minlength="3">
   </div>
+  <div *ngIf="assigneeField.invalid && assigneeField.touched">Assignee must be at least three characters long!</div>
   <div>
     <label for="done">Is done?</label>
     <input id="done"
@@ -27,10 +29,15 @@
            #doneField="ngModel"
            [(ngModel)]="newTodo.done">
   </div>
-  <div *ngIf="nameField.invalid && nameField.touched">Name is required!</div>
-  <div *ngIf="assigneeField.invalid && assigneeField.touched">Assignee must be at least three characters long!</div>
+  <div [hidden]="editForm.valid">Form is invalid!</div>
+  <div>
+    {{editForm.value | json}}<br>
+    Form is visited? {{editForm.touched}}<br>
+    Form is changed? {{editForm.dirty}}<br>
+    Form is valid? {{editForm.valid}}
+  </div>
   <div>
     <button type="button" form="editTodoForm" [routerLink]="'/todos'">Back</button>
-    <button type="button" form="editTodoForm" name="edit" (click)="editTodo()">Edit</button>
+    <button type="submit" form="editTodoForm" name="edit" [disabled]="editForm.invalid">Edit</button>
   </div>
 </form>
