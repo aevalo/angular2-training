@@ -10,7 +10,7 @@ import {SearchService} from '../search.service';
 })
 export class SearchComponent implements OnInit {
   private resultAsync: Observable<any[]>;
-  private control: FormControl;
+  control: FormControl;
 
   constructor(private searchService: SearchService) {
     this.control = new FormControl();
