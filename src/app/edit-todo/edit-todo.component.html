@@ -2,16 +2,33 @@
   <h3 [ngClass]="{'todo-done': todo.done}">Todo #{{index + 1}} - {{todo.name}}</h3>
   <div>
     <label for="name">Name:</label>
-    <input id="name" name="name" type="text" [(ngModel)]="newTodo.name" />
+    <input id="name"
+           name="name"
+           type="text"
+           #nameField="ngModel"
+           [(ngModel)]="newTodo.name"
+           required>
   </div>
   <div>
     <label for="assignee">Assignee:</label>
-    <input id="assignee" name="assignee" type="text" [(ngModel)]="newTodo.assignee" />
+    <input id="assignee"
+           name="assignee"
+           type="text"
+           #assigneeField="ngModel"
+           [(ngModel)]="newTodo.assignee"
+           required
+           minlength="3">
   </div>
   <div>
     <label for="done">Is done?</label>
-    <input id="done" name="done" type="checkbox" [(ngModel)]="newTodo.done" />
+    <input id="done"
+           name="done"
+           type="checkbox"
+           #doneField="ngModel"
+           [(ngModel)]="newTodo.done">
   </div>
+  <div *ngIf="nameField.invalid && nameField.touched">Name is required!</div>
+  <div *ngIf="assigneeField.invalid && assigneeField.touched">Assignee must be at least three characters long!</div>
   <div>
     <button type="button" form="editTodoForm" [routerLink]="'/todos'">Back</button>
     <button type="button" form="editTodoForm" name="edit" (click)="editTodo()">Edit</button>

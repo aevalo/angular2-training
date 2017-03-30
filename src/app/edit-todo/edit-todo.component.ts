@@ -25,7 +25,7 @@ export class EditTodoComponent implements OnInit {
       this.todo.name = this.newTodo.name;
       this.newTodo.name = '';
     }
-    if (this.newTodo.assignee.length > 0) {
+    if (this.newTodo.assignee && this.newTodo.assignee.length > 0) {
       this.todo.assignee = this.newTodo.assignee;
       this.newTodo.assignee = '';
     }
