@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {TodoService} from '../todo.service';
 import {Item} from '../item';
 
@@ -14,7 +14,7 @@ export class EditTodoComponent implements OnInit {
   newTodo: Item;
   constructor(private route: ActivatedRoute, private router: Router, private todoService: TodoService) {}
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params: Params) => {
       this.index = +params['index']; // + converts string to number in JavaScript
       this.todo = this.todoService.getTodoItem(this.index);
       this.newTodo = Object.assign({}, this.todo);
