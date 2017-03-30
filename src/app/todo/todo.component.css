@@ -1,0 +1,26 @@
+.todo-item {
+  display: inline;
+  padding: 1px;
+}
+
+.todo-edit-link {
+  display: inline;
+}
+
+.todo-item:hover {
+  background-color: yellow;
+}
+
+.todo-item.todo-done {
+  text-decoration: line-through;
+  background-color: lightgray;
+}
+
+.todo-item.done::after {
+  content: " <- This task is done"
+}
+
+.todo-item.highlight {
+  padding: 0;
+  border: red solid 1px;
+}

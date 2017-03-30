@@ -1,0 +1,12 @@
+<div class="todo-container">
+  <div class="todo-item"
+       [class.done]="inputTodo.done"
+       [class.highlight]="inputTodo.highlight"
+       [ngClass]="{'todo-done': inputTodo.done}"
+       (click)="inputTodo.done = !inputTodo.done"
+       (mouseenter)="inputTodo.highlight = true"
+       (mouseleave)="inputTodo.highlight = false">
+    ({{index + 1}}) - {{ inputTodo.name }} - {{ inputTodo.assignee }}
+  </div>
+  <button class="todo-edit-link" [routerLink]="[index]">Edit</button>
+</div>

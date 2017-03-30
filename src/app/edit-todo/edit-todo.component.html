@@ -1,0 +1,19 @@
+<form id="editTodoForm" name="editTodoForm">
+  <h3 [ngClass]="{'todo-done': todo.done}">Todo #{{index + 1}} - {{todo.name}}</h3>
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" name="name" type="text" [(ngModel)]="newTodo.name" />
+  </div>
+  <div>
+    <label for="assignee">Assignee:</label>
+    <input id="assignee" name="assignee" type="text" [(ngModel)]="newTodo.assignee" />
+  </div>
+  <div>
+    <label for="done">Is done?</label>
+    <input id="done" name="done" type="checkbox" [(ngModel)]="newTodo.done" />
+  </div>
+  <div>
+    <button type="button" form="editTodoForm" [routerLink]="'/todos'">Back</button>
+    <button type="button" form="editTodoForm" name="edit" (click)="editTodo()">Edit</button>
+  </div>
+</form>

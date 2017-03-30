@@ -1,0 +1,10 @@
+<h3>My todo list:</h3>
+<form id="newTodoForm" name="newTodoForm">
+  <label for="newTodo">New Todo:</label>
+  <input id="newTodo" type="text" name="newTodo" [(ngModel)]="newTodo" />
+  <button type="button" form="newTodoForm" (click)="addNewTodo(); newTodo=''">Add new Todo</button>
+</form>
+<div class="todo-list">
+  <app-todo *ngFor="let todo of todos; let i = index" [inputTodo]="todo" [index]="i"></app-todo>
+</div>
+
