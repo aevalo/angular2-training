@@ -1,14 +1,21 @@
 <h1>GitHub search</h1>
-<form id="searchForm" name="searchForm">
+<form novalidate id="searchForm" name="searchForm" (submit)="term.length > 0 && doSearch(term.value)">
     <label for="searchTerm">Search:&nbsp;</label>
-    <input id="searchTerm" name="searchTerm" type="text" placeholder="Search..." #term>
-    <button type="button" (click)="doSearch(term.value)">Search</button>
+    <input id="searchTerm"
+           name="searchTerm"
+           type="text"
+           placeholder="Search..."
+           #term
+           [formControl]="control"
+           required minlength="1">
+    <button type="submit">Search</button>
 </form>
-<hr>
 <div class="results">
-  <ul>
-    <li *ngFor="let item of results">
-      <a class="item-full-name item-link" href="{{item.html_url}}">{{item.full_name}}</a>
-    </li>
-  </ul>
+  <div class="result" *ngFor="let item of resultAsync | async">
+    <div class="result-owner">
+      <img src="{{item.owner.avatar_url}}">
+      <span>{{item.owner.login}}</span>
+    </div>
+    <a class="result-link" href="{{item.html_url}}">{{item.full_name}}</a>
+  </div>
 </div>

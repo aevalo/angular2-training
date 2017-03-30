@@ -1,0 +1,28 @@
+.results {
+  margin-top: 5px;
+  border-top: 1px solid black;
+}
+
+.results > .result {
+  border: 2px solid lightgray;
+  margin: 0px 2px 0px 2px;
+  padding: 2px;
+}
+
+.results > .result:hover {
+  border: 2px inset darkgray;
+  margin: 0px 2px 0px 2px;
+  padding: 2px;
+  background-color: lightgray;
+}
+
+.results > .result > .result-owner > img {
+  width: 20px;
+  height: 20px;
+}
+
+.results > .result > .result-owner > span {
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: normal;
+}

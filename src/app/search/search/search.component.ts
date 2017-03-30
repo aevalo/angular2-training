@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs/Rx';
 import {SearchService} from '../search.service';
 
 @Component({
@@ -7,10 +9,19 @@ import {SearchService} from '../search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  results: any[];
-  constructor(private searchService: SearchService) {}
-  ngOnInit(): void {}
+  private resultAsync: Observable<any[]>;
+  private control: FormControl;
+
+  constructor(private searchService: SearchService) {
+    this.control = new FormControl();
+  }
+  ngOnInit(): void {
+    // This takes better care with switchMap, when Observable is HTTP return
+    this.resultAsync = this.control.valueChanges
+      .debounceTime(2000)
+      .switchMap(term => term ? this.searchService.search(term) : Observable.of([]));
+  }
   doSearch(term: string): void {
-    this.searchService.search(term).subscribe(items => this.results = items);
+    this.resultAsync = this.searchService.search(term);
   }
 }
