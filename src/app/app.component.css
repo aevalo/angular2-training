@@ -1,0 +1,16 @@
+ul.nav-bar {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul.nav-bar > li.nav-item {
+  display: inline;
+}
+
+ul.nav-bar > li.nav-item-active {
+  text-decoration: underline;
+}
+
+ul.nav-bar > li:before {
+  content: '> ';
+}
